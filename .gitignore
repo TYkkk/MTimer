@@ -1,0 +1,11 @@
+Library
+Temp
+Logs
+Build
+obj
+.vs
+SampleFramework/Assets/Test
+SampleFramework/Assets/Test.meta
+*.sln
+*.csproj
+AndroidBuild
