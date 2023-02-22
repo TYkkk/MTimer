@@ -74,7 +74,7 @@ public class CountdownChildTemplate : MonoBehaviour
     public void HideBtnClicked()
     {
         gameObject.SetActive(false);
-        LayoutRebuilder.ForceRebuildLayoutImmediate(Rebuild);
+        //LayoutRebuilder.ForceRebuildLayoutImmediate(Rebuild);
     }
 
     public void ShowCountdownText(float time)

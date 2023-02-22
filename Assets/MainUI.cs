@@ -18,6 +18,10 @@ public class MainUI : MonoBehaviour
     public Transform CountdownTemplateRoot;
     public GameObject CountdownTemplate;
 
+    public RectTransform TopPanel;
+
+    public Button ControlBtn;
+
     private List<GameObject> loadedCountdownTemplates = new List<GameObject>();
 
     private void Awake()
@@ -25,11 +29,13 @@ public class MainUI : MonoBehaviour
         Screen.SetResolution(200, 320, false);
         Application.targetFrameRate = -1;
         LoadConfigBtn.onClick.AddListener(LoadConfigBtnClicked);
+        ControlBtn.onClick.AddListener(ControlBtnClicked);
     }
 
     private void OnDestroy()
     {
         LoadConfigBtn.onClick.RemoveListener(LoadConfigBtnClicked);
+        ControlBtn.onClick.RemoveListener(ControlBtnClicked);
         loadedCountdownTemplates = null;
     }
 
@@ -57,8 +63,12 @@ public class MainUI : MonoBehaviour
 
         yield return new WaitForEndOfFrame();
 
-        float y = ConfigPanel.sizeDelta.y;
-        CountdownPanel.sizeDelta = new Vector2(CountdownPanel.sizeDelta.x, GetComponent<RectTransform>().sizeDelta.y - y);
+        LayoutRebuilder.ForceRebuildLayoutImmediate(TopPanel);
+    }
+
+    private void ControlBtnClicked()
+    {
+        ConfigPanel.gameObject.SetActive(!ConfigPanel.gameObject.activeSelf);
     }
 
     private string OpenFile()
