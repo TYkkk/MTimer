@@ -32,6 +32,11 @@ public class MainUI : MonoBehaviour
         ControlBtn.onClick.AddListener(ControlBtnClicked);
     }
 
+    private void Start()
+    {
+        LoadConfigFile("Config.txt");
+    }
+
     private void OnDestroy()
     {
         LoadConfigBtn.onClick.RemoveListener(LoadConfigBtnClicked);
@@ -39,13 +44,18 @@ public class MainUI : MonoBehaviour
         loadedCountdownTemplates = null;
     }
 
-    private void LoadConfigBtnClicked()
+    private void LoadConfigFile(string filePath)
     {
-        string filePath = OpenFile();
         if (!string.IsNullOrEmpty(filePath) && File.Exists(filePath))
         {
             StartCoroutine(LoadConfig(filePath));
         }
+    }
+
+    private void LoadConfigBtnClicked()
+    {
+        string filePath = OpenFile();
+        LoadConfigFile(filePath);
     }
 
     IEnumerator LoadConfig(string configFilePath)
@@ -164,5 +174,5 @@ public class TimeConfig
 
 public static class Global
 {
-    public static string ConfigDirectoryName;
+    public static string ConfigDirectoryName="./";
 }

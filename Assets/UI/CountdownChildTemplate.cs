@@ -17,7 +17,7 @@ public class CountdownChildTemplate : MonoBehaviour
     private float preTime;
 
     private int frameCount = 0;
-    private int showCount = 5;
+    private int showCount = 4;
 
     private bool running = false;
 
